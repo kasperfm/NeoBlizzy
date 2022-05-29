@@ -2,8 +2,6 @@
 
 namespace KasperFM\NeoBlizzy\Services;
 
-use Illuminate\Support\Facades\Http;
-
 class BaseService
 {
     protected string $baseDomain = 'api.blizzard.com';
@@ -21,15 +19,20 @@ class BaseService
     public function setRegion(string $region)
     {
         $this->region = $region;
+
         return $this;
     }
 
-    protected function callGetApi(string $endpoint, array $parameters): object|array
+    protected function callGetApi(string $endpoint, array $parameters)
     {
         $parameters = array_merge($parameters, [
-            'access_token' => $this->accessToken
+            'access_token' => $this->accessToken,
+            'locale' => config('neoblizzy.locale')
         ]);
 
-        return Http::get('https://' . $this->region . '.' . $this->baseDomain . '/' . $endpoint, $parameters)->object();
+        $apiResponse = collect(\NeoBlizzy::cacheApiCall('https://' . $this->region . '.' . $this->baseDomain . '/' . $endpoint, $parameters));
+        $return = $apiResponse->pipeInto(ApiResult::class);
+
+        return $return->setAccessToken($this->accessToken)->followLinks();
     }
 }

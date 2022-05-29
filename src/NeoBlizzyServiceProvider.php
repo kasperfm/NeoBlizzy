@@ -2,6 +2,7 @@
 
 namespace KasperFM\NeoBlizzy;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
 class NeoBlizzyServiceProvider extends ServiceProvider

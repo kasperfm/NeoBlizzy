@@ -31,6 +31,10 @@ class BaseService
         ]);
 
         $apiResponse = collect(\NeoBlizzy::cacheApiCall('https://' . $this->region . '.' . $this->baseDomain . '/' . $endpoint, $parameters));
+        if ($apiResponse->has('code') && $apiResponse->has('detail') && $apiResponse->get('code') != 200) {
+            throw new \Exception('API Error ' . $apiResponse->get('code') . ': ' . $apiResponse->get('detail'));
+        }
+
         $return = $apiResponse->pipeInto(ApiResult::class);
 
         return $return->setAccessToken($this->accessToken)->followLinks();

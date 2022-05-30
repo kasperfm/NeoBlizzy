@@ -8,8 +8,8 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'enable_cache' => false,
-    'cache_timeout' => 60,
+    'enable_cache' => env('BATTLENET_ENABLE_CACHE', true),
+    'cache_timeout' => env('BATTLENET_CACHE_TIMEOUT', 120),
 
     /*
     |--------------------------------------------------------------------------

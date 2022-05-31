@@ -21,6 +21,6 @@ class NeoBlizzy
             });
         }
 
-        return Http::connectTimeout($httpTimeout)->timeout($httpTimeout)->get($url, $parameters)->object();
+        return Http::timeout($httpTimeout)->get($url, $parameters)->object();
     }
 }

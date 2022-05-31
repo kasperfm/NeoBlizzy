@@ -51,8 +51,6 @@ It's still in a very early and simple stage, and can only handle a few World of 
 
 
    dd($wowChar->getName());
-   
-   // The result of the getName() function on the $output object.
+   // The result of the getName() function on the $wowChar object.
    "Zomixiana"
-
    ```

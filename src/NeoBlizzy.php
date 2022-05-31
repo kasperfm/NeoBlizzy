@@ -17,7 +17,7 @@ class NeoBlizzy
 
         if (config('neoblizzy.enable_cache', true)) {
             return Cache::remember('neoblizzy.' . md5($url), config('neoblizzy.cache_timeout'), function () use($url, $parameters, $httpTimeout) {
-                return Http::connectTimeout($httpTimeout)->timeout($httpTimeout)->get($url, $parameters)->object();
+                return Http::timeout($httpTimeout)->get($url, $parameters)->object();
             });
         }
 

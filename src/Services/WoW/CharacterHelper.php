@@ -16,6 +16,8 @@ class CharacterHelper
     protected string $race;
     protected string $class;
     protected string $currentSpec;
+    protected string $avatarUrl;
+    protected string $characterDisplayUrl;
 
     public function __construct(ApiResult $apiResult)
     {
@@ -29,6 +31,16 @@ class CharacterHelper
         $this->setProperty('race', $apiResult->race->name);
         $this->setProperty('class', $apiResult->character_class->name);
         $this->setProperty('currentSpec', $apiResult->active_spec->name);
+
+        foreach ($apiResult->media->assets as $asset) {
+            if ($asset->key == 'avatar') {
+                $this->setProperty('avatarUrl', $asset->value);
+            }
+
+            if ($asset->key == 'main') {
+                $this->setProperty('characterDisplayUrl', $asset->value);
+            }
+        }
     }
 
     private function setProperty($propName, $value)

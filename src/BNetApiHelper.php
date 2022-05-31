@@ -34,7 +34,7 @@ class BNetApiHelper
         }
 
         if (empty($apiKey) || empty($apiSecret)) {
-            return null;
+            throw new \Exception('Battle.net API keys is empty. Please fill out the env variables.');
         }
 
         $httpResponse = Http::asMultipart()

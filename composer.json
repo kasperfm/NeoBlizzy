@@ -1,0 +1,39 @@
+{
+    "name": "kasperfm/neoblizzy",
+    "description": "PHP Laravel client for Battle.net API",
+    "keywords": [
+        "laravel",
+        "battle.net",
+        "battlenet",
+        "api"
+    ],
+    "homepage": "https://github.com/kasperfm/neoblizzy",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kasper Færch Mikkelsen",
+            "email": "kasper.faerch@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "^8.0",
+        "laravel/framework": "8.*|9.*",
+        "guzzlehttp/guzzle": "^7.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "KasperFM\\NeoBlizzy\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KasperFM\\NeoBlizzy\\NeoBlizzyServiceProvider"
+            ],
+            "aliases": {
+                "NeoBlizzy": "KasperFM\\NeoBlizzy\\NeoBlizzyFacade"
+            }
+        }
+    }
+}

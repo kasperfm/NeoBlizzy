@@ -9,6 +9,7 @@ use KasperFM\NeoBlizzy\Services\WoWService;
 class BNetApiHelper
 {
     protected string $baseDomain = 'battle.net';
+    protected string $region = 'eu';
     protected string $domain;
     protected string $accessToken;
 
@@ -17,9 +18,9 @@ class BNetApiHelper
         $this->setRegion($region);
     }
 
-    private function setRegion(string $region)
+    public function setRegion(string $region)
     {
-        $this->domain = 'https://' . $region . '.' . $this->baseDomain;
+        $this->region = $region;
 
         return $this;
     }
@@ -39,7 +40,7 @@ class BNetApiHelper
 
         $httpResponse = Http::asMultipart()
             ->withBasicAuth($apiKey, $apiSecret)
-            ->post($this->domain . '/oauth/token', ['grant_type' => 'client_credentials']);
+            ->post('https://' . $this->region . '.' . $this->baseDomain . '/oauth/token', ['grant_type' => 'client_credentials']);
 
         if (!property_exists($httpResponse->object(), 'access_token')) {
             throw new \Exception('Unable to retrieve access token from Blizzard!');
@@ -56,7 +57,7 @@ class BNetApiHelper
             $this->createAccessToken();
         }
 
-        return new WoWService($this->accessToken);
+        return new WoWService($this->accessToken, $this->region);
     }
 
     public function diablo3Api()
@@ -65,6 +66,6 @@ class BNetApiHelper
             $this->createAccessToken();
         }
 
-        return new D3Service($this->accessToken);
+        return new D3Service($this->accessToken, $this->region);
     }
 }

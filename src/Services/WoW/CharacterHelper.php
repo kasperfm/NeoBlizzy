@@ -49,4 +49,65 @@ class CharacterHelper
             $this->{$propName} = $value;
         }
     }
+
+    public function getAchievementPoints(): int
+    {
+        return $this->achievementPoints;
+    }
+
+    public function getAvatarUrl(): string
+    {
+        return $this->avatarUrl;
+    }
+
+    public function getCharacterDisplayUrl(): string
+    {
+        return $this->characterDisplayUrl;
+    }
+
+    public function getClass(): string
+    {
+        return $this->class;
+    }
+
+    public function getCurrentSpec(): string
+    {
+        return $this->currentSpec;
+    }
+
+    public function getExp(): int
+    {
+        return $this->exp;
+    }
+
+    public function getFaction(): string
+    {
+        return $this->faction;
+    }
+
+    public function getGender(): string
+    {
+        return $this->gender;
+    }
+
+    public function getLevel(): int
+    {
+        return $this->level;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getRace(): string
+    {
+        return $this->race;
+    }
+
+    public function getRealm(): string
+    {
+        return $this->realm;
+    }
+
 }

@@ -3,6 +3,7 @@
 namespace KasperFM\NeoBlizzy;
 
 use Illuminate\Support\Facades\Http;
+use KasperFM\NeoBlizzy\Services\D3Service;
 use KasperFM\NeoBlizzy\Services\WoWService;
 
 class BNetApiHelper
@@ -56,5 +57,14 @@ class BNetApiHelper
         }
 
         return new WoWService($this->accessToken);
+    }
+
+    public function diablo3Api()
+    {
+        if (empty($this->accessToken)) {
+            $this->createAccessToken();
+        }
+
+        return new D3Service($this->accessToken);
     }
 }

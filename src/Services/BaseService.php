@@ -23,7 +23,7 @@ class BaseService
         return $this;
     }
 
-    protected function callGetApi(string $endpoint, array $parameters)
+    protected function callGetApi(string $endpoint, array $parameters = [])
     {
         $parameters = array_merge($parameters, [
             'access_token' => $this->accessToken,

@@ -28,7 +28,7 @@ It's still in a very early and simple stage, and can only handle a few World of 
 4) Yay! Setup is now done, and you can now use the package in your application.
    Here is an example where ``Zomixiana`` is my character name, and ``Tarren Mill`` is the server/realm in this case.
    ```php
-   $wowChar = \NeoBlizzy::make()->setRegion('eu')->wowApi()->getCharacterData('Zomixiana', 'Tarren Mill');
+   $wowChar = \NeoBlizzy::make()->setRegion('eu')->wowApi()->getCharacter('Zomixiana', 'Tarren Mill');
    ``` 
 
    ```php

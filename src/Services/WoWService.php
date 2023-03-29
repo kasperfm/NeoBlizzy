@@ -18,10 +18,6 @@ class WoWService extends BaseService
 
     public function getCharacter(string $name, string $realm)
     {
-        $character = $this->callGetApi('profile/'.$this->gameParameter.'/character/'.Str::slug($realm).'/'.Str::slug($name), [
-            'namespace' => 'profile-' . $this->region
-        ]);
-
-        return new CharacterHelper($character);
+        return new CharacterHelper($this->getCharacterRaw($name, $realm));
     }
 }

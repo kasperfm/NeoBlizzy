@@ -23,6 +23,7 @@ return [
 
     'api_key' => env('BATTLENET_API_KEY', ''),
     'secret_key' => env('BATTLENET_API_SECRET', ''),
+    'api_sc2_redirect_uri' => env('BATTLENET_SC2_REDIRECT_URI', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ return [
     | For examples: en_US | en_GB | fr_FR | de_DE | ru_RU
     |
     */
+
     'locale' => env('BATTLENET_LOCALE', 'en_GB')
 
 ];

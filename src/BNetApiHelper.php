@@ -4,6 +4,7 @@ namespace KasperFM\NeoBlizzy;
 
 use Illuminate\Support\Facades\Http;
 use KasperFM\NeoBlizzy\Services\D3Service;
+use KasperFM\NeoBlizzy\Services\SC2Service;
 use KasperFM\NeoBlizzy\Services\WoWService;
 
 class BNetApiHelper
@@ -67,5 +68,14 @@ class BNetApiHelper
         }
 
         return new D3Service($this->accessToken, $this->region);
+    }
+
+    public function sc2Api()
+    {
+        if (empty($this->accessToken)) {
+            $this->createAccessToken();
+        }
+
+        return new SC2Service($this->accessToken, $this->region);
     }
 }

@@ -61,6 +61,7 @@ class NeoBlizzyServiceProvider extends ServiceProvider
         }
 
         Route::group(['prefix' => 'neoblizzy'], function () {
+            // SC2 routes
             Route::get(
                 '/sc2auth',
                 OAuth2Controller::class.'@sc2Auth'
@@ -70,6 +71,18 @@ class NeoBlizzyServiceProvider extends ServiceProvider
                 '/sc2redirect/{profile}',
                 OAuth2Controller::class.'@sc2Redirect'
             )->middleware('web')->name('neoblizzy.sc2redirect');
+
+
+            // WoW routes
+            Route::get(
+                '/wowauth',
+                OAuth2Controller::class.'@wowAuth'
+            )->middleware('web')->name('neoblizzy.wowauth');
+
+            Route::get(
+                '/wowredirect/{profile}',
+                OAuth2Controller::class.'@wowRedirect'
+            )->middleware('web')->name('neoblizzy.wowredirect');
         });
     }
 }

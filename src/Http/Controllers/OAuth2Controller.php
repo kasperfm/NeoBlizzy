@@ -18,4 +18,14 @@ class OAuth2Controller extends Controller
     {
         return response()->redirectTo(config('neoblizzy.api_sc2_redirect_uri') . '?profile=' . $profile);
     }
+
+    public function wowAuth(Request $request)
+    {
+        return NeoBlizzy::make()->wowApi()->authWithApi();
+    }
+
+    public function wowRedirect(Request $request, $profile)
+    {
+        return response()->redirectTo(config('neoblizzy.api_wow_redirect_uri') . '?profile=' . $profile);
+    }
 }

@@ -2,12 +2,10 @@
 
 namespace KasperFM\NeoBlizzy\Services;
 
-use Illuminate\Support\Str;
 use KasperFM\NeoBlizzy\Models\NeoBlizzyOAuth2Token;
 use KasperFM\NeoBlizzy\NeoBlizzyFacade as NeoBlizzy;
 use KasperFM\NeoBlizzy\OAuth2\Entity\SC2User;
 use KasperFM\NeoBlizzy\OAuth2\Providers\SC2Provider;
-use League\OAuth2\Client\Token\AccessToken;
 
 class SC2Service extends BaseService
 {
@@ -54,18 +52,6 @@ class SC2Service extends BaseService
         $this->setToken($accessToken->getToken());
 
         return response()->redirectTo(route('neoblizzy.sc2redirect', ['profile' => $apiValues['id']]));
-    }
-
-    public function setToken($token)
-    {
-        $this->token = $token;
-
-        return $this;
-    }
-
-    public function getTokenData($profileID)
-    {
-        return NeoBlizzyOAuth2Token::where('profile_id', $profileID)->where('game', $this->gameParameter)->firstOrFail();
     }
 
     public function getProfile($profileId, $realmId, $regionId, $token)

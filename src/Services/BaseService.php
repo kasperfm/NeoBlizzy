@@ -3,6 +3,7 @@
 namespace KasperFM\NeoBlizzy\Services;
 
 use Illuminate\Support\Facades\Http;
+use KasperFM\NeoBlizzy\Models\NeoBlizzyOAuth2Token;
 use KasperFM\NeoBlizzy\NeoBlizzyFacade as NeoBlizzy;
 use KasperFM\NeoBlizzy\OAuth2\Providers\SC2Provider;
 
@@ -11,6 +12,7 @@ class BaseService
     protected string $baseDomain = 'api.blizzard.com';
     protected string $accessToken= 'no_access_token_defined';
 
+    protected string $token;
     protected string $gameParameter;
     protected string $region;
 
@@ -41,5 +43,17 @@ class BaseService
         $return = $apiResponse->pipeInto(ApiResult::class);
 
         return $return->setAccessToken($this->accessToken)->followLinks();
+    }
+
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    public function getTokenData($profileID)
+    {
+        return NeoBlizzyOAuth2Token::where('profile_id', $profileID)->where('game', $this->gameParameter)->firstOrFail();
     }
 }

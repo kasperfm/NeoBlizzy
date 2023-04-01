@@ -24,6 +24,7 @@ return [
     'api_key' => env('BATTLENET_API_KEY', ''),
     'secret_key' => env('BATTLENET_API_SECRET', ''),
     'api_sc2_redirect_uri' => env('BATTLENET_SC2_REDIRECT_URI', ''),
+    'api_wow_redirect_uri' => env('BATTLENET_WOW_REDIRECT_URI', ''),
 
     /*
     |--------------------------------------------------------------------------

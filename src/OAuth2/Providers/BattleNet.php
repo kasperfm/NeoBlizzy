@@ -4,7 +4,6 @@ namespace KasperFM\NeoBlizzy\OAuth2\Providers;
 
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
-use League\OAuth2\Client\Token\AccessToken;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class BattleNet extends AbstractProvider

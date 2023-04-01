@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->index()->nullable();
             $table->string('game', 32)->index();
             $table->string('region', 2);
-            $table->integer('realm');
+            $table->string('realm', 64)->nullable();
             $table->integer('profile_id')->index();
             $table->string('token');
             $table->timestamp('expires_at')->nullable()->index();

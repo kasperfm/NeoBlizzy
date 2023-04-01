@@ -38,9 +38,17 @@ class SC2Service extends BaseService
 
         $apiValues = $provider->getResourceOwner($accessToken)->toArray();
 
-        NeoBlizzyOAuth2Token::firstOrCreate(
-            ['token' => $accessToken->getToken(), 'user_id' => 1],
-            ['game' => 'sc2', 'region' => $apiValues['region'], 'realm' => $apiValues['realm'], 'profile_id' => $apiValues['id']]
+        NeoBlizzyOAuth2Token::updateOrCreate(
+            [
+                'token' => $accessToken->getToken(),
+                'game' => $this->gameParameter
+            ],
+            [
+                'region' => $apiValues['region'],
+                'realm' => $apiValues['realm'],
+                'profile_id' => $apiValues['id'],
+                'user_id' => auth()?->id() ?? null
+            ]
         );
 
         $this->setToken($accessToken->getToken());
@@ -57,7 +65,7 @@ class SC2Service extends BaseService
 
     public function getTokenData($profileID)
     {
-        return NeoBlizzyOAuth2Token::where('profile_id', $profileID)->firstOrFail();
+        return NeoBlizzyOAuth2Token::where('profile_id', $profileID)->where('game', $this->gameParameter)->firstOrFail();
     }
 
     public function getProfile($profileId, $realmId, $regionId, $token)

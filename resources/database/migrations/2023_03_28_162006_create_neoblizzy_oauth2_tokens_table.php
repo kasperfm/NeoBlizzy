@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('neoblizzy_oauth2_tokens', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->index();
+            $table->bigInteger('user_id')->index()->nullable();
             $table->string('game', 32)->index();
             $table->string('region', 2);
             $table->integer('realm');
